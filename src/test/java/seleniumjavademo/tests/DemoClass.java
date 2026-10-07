@@ -7,6 +7,8 @@ public class DemoClass {
 
 		System.out.println("boo yeah!!!");
 
+		System.out.println("New Changes");
+
 	}
 
 }
