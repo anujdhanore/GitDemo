@@ -29,11 +29,12 @@ public class StandAloneTest {
 		driver.findElement(By.id("login")).click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".card-body button:last-of-type")));
 		List<WebElement> products = driver.findElements(By.cssSelector("div.card"));
-//		products.stream().forEach(s -> System.out.println(s.getText()));
+
+		products.stream().forEach(s -> System.out.println(s.getText()));
 
 		WebElement product = products.stream()
-				.filter(prod -> prod.findElement(By.tagName("b")).getText().equals(productName))
-				.findFirst().orElse(null);
+				.filter(prod -> prod.findElement(By.tagName("b")).getText().equals(productName)).findFirst()
+				.orElse(null);
 		product.findElement(By.cssSelector(".card-body button:last-of-type")).click();
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
@@ -48,10 +49,11 @@ public class StandAloneTest {
 
 		driver.findElement(By.xpath("//div[@class='form__cc']//div[contains(text(),'CVV')]/following-sibling::input"))
 				.sendKeys("4567");
-		
+
 		Actions a = new Actions(driver);
 		a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")), "india").build().perform();
-		//driver.findElement(By.cssSelector("[placeholder='Select Country']")).sendKeys("india");
+		// driver.findElement(By.cssSelector("[placeholder='Select
+		// Country']")).sendKeys("india");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("section.ta-results.list-group")));
 		List<WebElement> countryNames = driver.findElements(By.cssSelector("button.ta-item.list-group-item"));
 		countryNames.stream().filter(country -> country.getText().equalsIgnoreCase("India")).findFirst().orElseThrow()
