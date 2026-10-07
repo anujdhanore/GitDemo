@@ -43,6 +43,9 @@ public class StandAloneTest {
 
 		List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
 		Boolean match = cartProducts.stream().anyMatch(prod -> prod.getText().equalsIgnoreCase(productName));
+
+		System.out.println(match);
+
 		Assert.assertTrue(match);
 
 		driver.findElement(By.xpath("//*[@class='totalRow']/button")).click();
